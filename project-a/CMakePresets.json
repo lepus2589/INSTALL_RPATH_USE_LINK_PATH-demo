@@ -1,0 +1,52 @@
+{
+  "version": 6,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 25,
+    "patch": 0
+  },
+  "configurePresets": [
+    {
+      "name": "base",
+      "hidden": true,
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "CMAKE_INSTALL_PREFIX": "${sourceDir}/install"
+      }
+    },
+    {
+      "name": "local-dependency",
+      "inherits": [
+        "base"
+      ],
+      "cacheVariables": {
+        "CMAKE_PREFIX_PATH": "${sourceDir}/3rdparty/install"
+      },
+      "binaryDir": "${sourceDir}/build/local",
+      "displayName": "Config for locally installed dependency"
+    },
+    {
+      "name": "external-dependency",
+      "inherits": [
+        "base"
+      ],
+      "cacheVariables": {
+        "CMAKE_PREFIX_PATH": "${sourceDir}/../install"
+      },
+      "binaryDir": "${sourceDir}/build/external",
+      "displayName": "Config for externally installed dependency"
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "local-dependency",
+      "displayName": "Build with locally install dependency",
+      "configurePreset": "local-dependency"
+    },
+    {
+      "name": "external-dependency",
+      "displayName": "Build with externally installled dependency",
+      "configurePreset": "external-dependency"
+    }
+  ]
+}

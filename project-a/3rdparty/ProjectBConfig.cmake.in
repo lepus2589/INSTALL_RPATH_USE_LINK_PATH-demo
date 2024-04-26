@@ -1,0 +1,7 @@
+@PACKAGE_INIT@
+
+cmake_minimum_required(VERSION @CMAKE_MINIMUM_REQUIRED_VERSION@)
+
+include("${CMAKE_CURRENT_LIST_DIR}/ProjectB_Targets.cmake")
+
+check_required_components(ProjectB)
